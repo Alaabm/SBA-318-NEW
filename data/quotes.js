@@ -16,7 +16,7 @@ const quotes = [
         text: "The future belongs to those who believe in the beauty of their dreams.",
         author: "Eleanor Roosevelt",
         date: "January 18, 2024"
-    }
+    },
     {
         id: 5,
         text: "The only limit to our realization of tomorrow will be our doubts of today.",
