@@ -28,38 +28,183 @@ app.get("/", (req, res) =>{
 //Middleware
 app.use(express.json());
 
+////////New Users Form//////////
 const data = [
     {
-        title: '1',
-        content: '1a',
+        id:1,
+        name: 'John Doe',
+        username: 'johndoe',
+        email: 'john@example.com'
     },
     {
-        title: '2',
-        content: '2a',
+        id:2,
+        name: 'Jane Smith',
+        username: 'janesmith',
+        email: 'jane@example.com'
     },
     {
-        title: '3',
-        content: '3a',
+        id:3,
+        name: 'Bob Johnson',
+        username: 'bobjohnson',
+        email: 'bob@example.com'
     },
+    {
+        id:4,
+        name: 'Alice Brown',
+        username: 'alicebrown',
+        email: 'alice@example.com'
+    },
+    {
+        id:5,
+        name: 'Charlie Davis',
+        username: 'charliedavis',
+        email: 'charlie@example.com'
+    },
+    {
+        id:6,
+        name: 'Emily White',
+        username: 'emilywhite',
+        email: 'emily@example.com'
+    }
 ];
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/posts', (req, res) => {
+app.get('/users', (req, res) => {
     res.send(data);
 });
 
-app.get('/posts/new', (req, res) => {
+app.get('/users/new', (req, res) => {
     res.send(`
-        <form action="/posts" method="POST" >
-        Title: <input type="text" name="title" /> <br />
-        Content: <input type="text" name="content" /> <br />
+        <form action="/users" method="POST" >
+        id: <input type="text" name="id" /> <br />
+        name: <input type="text" name="name" /> <br />
+        username: <input type="text" name="username" /> <br />
+        email: <input type="email" name="email" /> <br />
         <input type="submit"/>
         </form>
     `);
 });
 
-  // The form above is making a request to this route
+  // The form above is making a request to this route for users
+app.post('/users', (req, res) => {
+    console.log(req.body);
+    data.push(req.body);
+    res.redirect('/users');
+});
+
+///////New Post Form////////
+const dataPosts = [
+        {
+            id: 1,
+            userId:1,
+            content: "A group of pandas is called an embarrassment."
+        },
+        {
+            id: 2,
+            userId:1,
+            content: "Honeybees can recognize human faces."
+        },
+        {
+            id: 3,
+            userId:1,
+            content: 'The longest word with only one vowel is "strengths".'
+        },
+        {
+            id: 4,
+            userId:2,
+            content: "The world's largest pizza was over 1261 square meters (13,580.28 square feet)."
+        },
+        {
+            id: 5,
+            userId:2,
+            content: "The world's smallest mammal is the bumblebee bat."
+        },
+        {
+            id: 6,
+            userId:2,
+            content: 'The original name for the butterfly was "flutterby."'
+        },
+        {
+            id: 7,
+            userId:3,
+            content: "The average person will spend six months of their life waiting for red lights to turn green."
+        },
+        {
+            id: 8,
+            userId:3,
+            content: "The largest recorded snowflake was 15 inches in diameter."
+        },
+        {
+            id: 9,
+            userId:3,
+            content: "The world's largest desert is not the Sahara, but Antarctica."
+        },
+        {
+            id: 10,
+            userId:4,
+            content: "Bananas are berries, but strawberries aren't."
+        },
+        {
+            id: 11,
+            userId:4,
+            content: 'A "jiffy" is an actual unit of time, equal to 1/100th of a second.'
+        },
+        {
+            id: 12,
+            userId:4,
+            content: "The inventor of the frisbee was turned into a frisbee. Walter Morrison's ashes were molded into frisbees after he died."
+        },
+        {
+            id: 13,
+            userId:5,
+            content: "Octopuses have three hearts and blue blood."
+        },
+        {
+            id: 14,
+            userId:5,
+            content: "Cows have best friends and can become stressed when they are separated."
+        },
+        {
+            id: 15,
+            userId:5,
+            content: 'A group of flamingos is called a "flamboyance."'
+        },
+        {
+            id: 16,
+            userId:6,
+            content: "The Eiffel Tower can be 15 cm taller during the summer due to thermal expansion of the iron."
+        },
+        {
+            id: 17,
+            userId:6,
+            content: "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible."
+        },
+        {
+            id: 18,
+            userId:6,
+            content: "A crocidile can't stick its tongue out."
+        }
+];
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.get('/posts', (req, res) => {
+    res.send(dataPosts);
+});
+
+app.get('/posts/new', (req, res) => {
+    res.send(`
+        <form action="/posts" method="POST" >
+        id: <input type="text" name="id" /> <br />
+        userId: <input type="text" name="userId" /> <br />
+        content: <input type="text" name="content" /> <br />
+        <input type="submit"/>
+        </form>
+    `);
+});
+
+  // The form above is making a request to this route for posts
 app.post('/posts', (req, res) => {
     console.log(req.body);
     data.push(req.body);
@@ -67,8 +212,68 @@ app.post('/posts', (req, res) => {
 });
 
 
+////////New Comment Form//////////
+const dataComments = [
+    {
+        id: 1,
+        userId:1,
+        comment: "lorem ipsum dolor sit amet, consectetur."
+    },
+    {
+        id: 2,
+        userId:2,
+        comment: "lorem ipsum."
+    },
+    {
+        id: 3,
+        userId:3,
+        comment: "lorem ipsum dolor."
+    },
+    {
+        id: 4,
+        userId:4,
+        comment: "lorem ipsum dolor sit amet."
+    },
+    {
+        id: 5,
+        userId:5,
+        comment: "lorem ipsum dolor sit amet, consectetur."
+    },
+    {
+        id: 6,
+        userId:6,
+        comment: "lorem ipsum."
+    },
+    {
+        id: 7,
+        userId:1,
+        comment: "lorem ipsum dolor."
+    },
+];
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
+app.get('/comments', (req, res) => {
+    res.send(dataComments);
+});
 
+app.get('/comments/new', (req, res) => {
+    res.send(`
+        <form action="/users" method="POST" >
+        id: <input type="text" name="id" /> <br />
+        userId: <input type="text" name="userId" /> <br />
+        comment: <input type="text" name="comments" /> <br />
+        <input type="submit"/>
+        </form>
+    `);
+});
+
+// The form above is making a request to this route comments
+app.post('/comments', (req, res) => {
+    console.log(req.body);
+    data.push(req.body);
+    res.redirect('/comments');
+});
 
 
 app.listen(PORT, () => {

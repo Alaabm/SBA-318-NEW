@@ -23,6 +23,9 @@ router.route('/')
 
 module.exports = router;
 
+
+
+
 //quotes route -static
 // app
 // .route('/data/quotes') 
