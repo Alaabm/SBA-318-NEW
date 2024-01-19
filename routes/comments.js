@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const quotes = require('../data/quotes');
+const comments = require('../data/comments');
 
 router.use((req, res, next) => {
     console.log('Request made to /users');
@@ -9,7 +9,7 @@ router.use((req, res, next) => {
 
 router.route('/')  
     .get((req, res) => {
-        res.json(quotes)
+        res.json(comments)
     })
     // .post((req, res) => {
 
