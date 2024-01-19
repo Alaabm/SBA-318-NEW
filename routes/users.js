@@ -1,10 +1,32 @@
 const express = require('express');
 const router = express.Router();
+const users = require('../data/users');
 
 router.use((req, res, next) => {
     console.log('Request made to /users');
     next();
 });
+
+router.route('/')
+        .get((req, res) => {
+            res.json(users);
+        })
+        // .get((req, res) => {
+        //     const name = req.params.name;
+        //     res.json(req.params.name);
+        // })
+//     .post((req, res) => {
+
+//     })
+//     .patch((req, res) => {
+
+//     })
+//     .delete((req, res) => {
+
+//     })
+
+
+module.exports = router;
 
 // router
 //   .route('/') // localhost:3000/users
@@ -18,5 +40,3 @@ router.use((req, res, next) => {
 // router.get('/:userID/profile/:data', (req, res) => {
 //   res.send(req.params);
 // });
-
-module.exports = router;

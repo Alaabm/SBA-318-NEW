@@ -7,11 +7,20 @@ app.get("/", (req, res) =>{
 });
 
 
-const users = require('./data/users');
-const posts = require('./data/posts');
-const quotes = require('./data/quotes');
+const users = require('./routes/users');
+app.use("/data/users", users);
+
+const posts = require('./routes/posts');
+app.use("/data/posts", posts);
+
+const quotes = require('./routes/quotes');
+app.use("/data/quotes", quotes);
+
+
 
 //Middleware
+
+app.use(express.json());
 
 // app.use((req, res, next) => {
     
@@ -35,65 +44,6 @@ const quotes = require('./data/quotes');
 //     .post((req, res) => {
 
 //     })
-
-///////////////////////////
-//Route Handler templates
-//////////////////////////
-//users route
-app
-.route('/data/users')
-    .get((req, res) => {
-        res.json(users);
-    })
-//     .post((req, res) => {
-
-//     })
-//     .patch((req, res) => {
-
-//     })
-//     .delete((req, res) => {
-
-//     })
-
-app.get("/data/users/:username", (req, res) => {
-        res.send(req.params)
-});
-
-//posts route
-app
-.route('/data/posts') 
-    .get((req, res) => {
-        res.json(posts)
-    })
-//     .post((req, res) => {
-
-//     })
-//     .patch((req, res) => {
-
-//     })
-//     .delete((req, res) => {
-
-//     })
-
-
-//quotes route -static
-app
-.route('/data/quotes') 
-    .get((req, res) => {
-        res.json(quotes)
-    })
-//     .post((req, res) => {
-
-//     })
-//     .patch((req, res) => {
-
-//     })
-//     .delete((req, res) => {
-
-//     })
-
-
-
 app.listen(PORT, () => {
         console.log(`All Aboard the Express Ship: ${PORT}`);
     });
