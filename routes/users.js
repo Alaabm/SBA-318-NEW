@@ -41,7 +41,7 @@ router.route('/:id')
             console.log(user);
             res.json(user);
             })
-        //to delte user
+        //to delete user
         .delete((req, res, next) => {
             const user = users.find((u, i) => {
             if (u.id == req.params.id) {

@@ -22,11 +22,10 @@ const validatedata = (req, res, next) => {
     const { userId } = req.body;
     if (userId < 1) {
     } else { console.log("Valid User ID: " + userId)
-      next();
+    next();
     }
-  };
+};
 
- 
 
 //Middleware
 app.use(express.json());

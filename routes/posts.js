@@ -14,24 +14,24 @@ router.route('/')
 
 
 //get indiviual post
-router.get('/:id', (req, res) => {
-    console.log(req.params.id);
-    const post = posts.find((u) => u.id == req.params.id);
-    console.log(post);
-    res.json(post);
-})
+// router.get('/:id', (req, res) => {
+//     console.log(req.params.id);
+//     const post = posts.find((u) => u.id == req.params.id);
+//     console.log(post);
+//     res.json(post);
+// })
 
-router.delete('/:id', (req, res, next) => {
-    const post = posts.find((u, i) => {
-    if (u.id == req.params.id) {
-        posts.splice(i, 1);
-        return true;
-    }
-    });
+// router.delete('/:id', (req, res, next) => {
+//     const post = posts.find((u, i) => {
+//     if (u.id == req.params.id) {
+//         posts.splice(i, 1);
+//         return true;
+//     }
+//     });
 
-    if (post) res.json(post);
-    else next();
-    });
+//     if (post) res.json(post);
+//     else next();
+//     });
 
 
     // .post((req, res) => {
