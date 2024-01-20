@@ -11,15 +11,27 @@ router.route('/')
     .get((req, res) => {
         res.json(comments)
     })
-    // .post((req, res) => {
 
-    // })
-    // .patch((req, res) => {
+//get indiviual comments 
+router.get('/:id', (req, res) => {
+    console.log(req.params.id);
+    const comment = comments.find((u) => u.id == req.params.id);
+    console.log(comment);
+    res.json(comment);
+})
 
-    // })
-    // .delete((req, res) => {
 
-    // })
+router.delete('/:id', (req, res, next) => {
+    const comment = comments.find((u, i) => {
+    if (u.id == req.params.id) {
+        comments.splice(i, 1);
+        return true;
+    }
+    });
+
+    if (comment) res.json(comment);
+    else next();
+    });
 
 module.exports = router;
 

@@ -3,14 +3,13 @@ const app = express();
 const PORT = 3000;
 
 const users = require('./routes/users');
-app.use("/data/users", users);
+app.use("/users", users);
 
 const posts = require('./routes/posts');
-app.use("/data/posts", posts);
+app.use("/posts", posts);
 
 const comments = require('./routes/comments');
-app.use("/data/comments", comments);
-
+app.use("/comments", comments);
 
 
 //Display "Hello World... on localhost:3000"
@@ -19,12 +18,16 @@ app.get("/", (req, res) =>{
 });
 
 ////////////Middleware/////////////
+const validatedata = (req, res, next) => {
+    const { userId } = req.body;
+    if (userId < 1) {
+    } else { console.log("Valid User ID: " + userId)
+      next();
+    }
+  };
 
-////////////Function///////////////
-// app.use((req, res, next) => {
-//     next();
-// })
-////////////////////////////////////
+ 
+
 //Middleware
 app.use(express.json());
 
@@ -275,6 +278,15 @@ app.post('/comments', (req, res) => {
     res.redirect('/comments');
 });
 
+// 404 Middleware
+// app.use((req, res, next) => {
+//     next(error(404, "Resource Not Found"));
+//     });
+
+    app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.json({ error: err.message });
+    });
 
 app.listen(PORT, () => {
         console.log(`All Aboard the Express Ship: ${PORT}`);
